@@ -95,23 +95,23 @@ describe FiguresController do
     expect(page.body).to include('Kanye')
   end
 
-  it "allows you to see a single Figure" do
-    @figure = Figure.first
-    get "/figures/#{@figure.id}"
-    expect(last_response.status).to eq(200)
-    expect(last_response.body).to include("#{@figure.name}")
-  end
-
-  # it "allows you to view form to edit a single figure" do
+  # it "allows you to see a single Figure" do
   #   @figure = Figure.first
-  #   get "/figures/#{@figure.id}/edit"
-
+  #   get "/figures/#{@figure.id}"
   #   expect(last_response.status).to eq(200)
-  #   expect(last_response.body).to include('<form')
-  #   expect(last_response.body).to include('figure[name]')
-  #   expect(last_response.body).to include('figure[title_ids]')
-  #   expect(last_response.body).to include(@figure.name)
+  #   expect(last_response.body).to include("#{@figure.name}")
   # end
+
+  it "allows you to view form to edit a single figure" do
+    @figure = Figure.first
+    get "/figures/#{@figure.id}/edit"
+
+    expect(last_response.status).to eq(200)
+    expect(last_response.body).to include('<form')
+    expect(last_response.body).to include('figure[name]')
+    expect(last_response.body).to include('figure[title_ids]')
+    expect(last_response.body).to include(@figure.name)
+  end
 
 
   it "allows you to edit a single figure" do
